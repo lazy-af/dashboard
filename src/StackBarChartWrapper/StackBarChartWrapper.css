@@ -1,0 +1,13 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}
+
+path.domain {
+  stroke: black;
+}
+
+.y .tick line {
+  stroke: black;
+}

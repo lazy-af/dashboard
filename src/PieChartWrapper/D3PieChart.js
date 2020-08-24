@@ -1,19 +1,24 @@
 import * as d3 from 'd3';
 
-const width = 500;
-const height = 300;
-const radius = Math.min(width, height)/2;
-
-
 export default class D3PieChart {
-    constructor(element) {
+    constructor(element, width, height, colorScheme, legend, legendLength) {
         const vis = this;
+        if (legend) {
+            vis.width = width + legendLength;
+        } else {
+            vis.width = width;
+        }
+        
+        vis.legend = legend;
+        const radius = Math.min(width, height)/2;
+        vis.colorScheme = colorScheme;
         console.log(element);
+        console.log(legend);
 
         //svg container defined
         vis.svg = d3.select(element)
             .append('svg')
-                .attr('width', width)
+                .attr('width', vis.width)
                 .attr('height', height)
                     .append('g')
                         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
@@ -41,10 +46,7 @@ export default class D3PieChart {
         // setting scale ordinal
         const color = d3.scaleOrdinal()
             .domain(data.map(d => d.label))
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
-
-
-
+            .range(vis.colorScheme)
 
         // data join for slices
         const slice = vis.svg.select(".slices").selectAll("path.slice")
@@ -80,6 +82,32 @@ export default class D3PieChart {
         // exit
         slice.exit()
             .remove();
+
+        if (vis.legend) {
+            // data join for legend
+            const legend = vis.svg.selectAll(".legend")
+                .data(vis.pie(data))
+
+            // enter
+            const legendG = legend.enter()
+                .append("g")
+                .attr("class", "legend")
+                .attr("transform", (d, i) =>"translate(" + (170) +"," + (i * 15 - 140) + ")")
+
+            legendG
+                .append("rect") 
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("fill", (d, i) =>  color(i))
+
+            legendG
+                .append("text") // add the text
+                .text(d => d.data.label)
+                .style("font-size", 12)
+                .attr("y", 10)
+                .attr("x", 11);
+                        }
+
         
     }
 

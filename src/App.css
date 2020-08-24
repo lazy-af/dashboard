@@ -1,4 +1,5 @@
 .chart-container {
   display: flex;
   overflow: scroll;
+  padding: 40px;
 }

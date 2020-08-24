@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import D3PieChart from './D3PieChart';
+import './PieChartWrapper.css';
 
 const data1 = [
     {
@@ -27,23 +28,7 @@ const data1 = [
         value: 1
     },
     {
-        label: "sed",
-        value: 1
-    },
-    {
-        label: "do",
-        value: 1
-    },
-    {
         label: "eiusmod",
-        value: 1
-    },
-    {
-        label: "tempor",
-        value: 1
-    },
-    {
-        label: "incididunt",
         value: 1
     }
 ];
@@ -51,51 +36,35 @@ const data1 = [
 const data2 = [
     {
         label: "Lorem ipsum",
-        value: Math.random() * 10
+        value: 3
     },
     {
         label: "dolor sit",
-        value: Math.random() * 10
+        value: 4
     },
     {
         label: "amet",
-        value: Math.random() * 10
+        value: 1
     },
     {
         label: "consectetur",
-        value: Math.random() * 10
+        value: 7
     },
     {
         label: "adipisicing",
-        value: Math.random() * 10
+        value:4
     },
     {
         label: "elit",
-        value: Math.random() * 10
-    },
-    {
-        label: "sed",
-        value: Math.random() * 10
-    },
-    {
-        label: "do",
-        value: Math.random() * 10
+        value: 6
     },
     {
         label: "eiusmod",
-        value: Math.random() * 10
-    },
-    {
-        label: "tempor",
-        value: Math.random() * 10
-    },
-    {
-        label: "incididunt",
-        value: Math.random() * 10
+        value: 1
     }
 ];
 
-const PieChartWrapper = () => {
+const PieChartWrapper = (props) => {
     const chartArea = useRef(null);
     const [chart, setChart] = useState(null);
 
@@ -111,11 +80,11 @@ const PieChartWrapper = () => {
 
     useEffect(() => {
         if (!chart) {
-            setChart(new D3PieChart(chartArea.current))
+            setChart(new D3PieChart(chartArea.current, props.width, props.height, props.colorScheme, props.legend, props.legendLength))
         } else {
             chart.update(data)
         }
-    }, [chart, data]);
+    }, [chart, data, props.colorScheme, props.height, props.legend, props.legendLength, props.width]);
 
     return (
         <div ref={chartArea}>

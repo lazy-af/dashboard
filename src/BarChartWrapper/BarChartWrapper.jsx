@@ -47,7 +47,7 @@ const data1 = [
     }
   ];
 
-const BarChartWrapper = () => {
+const BarChartWrapper = (props) => {
     const chartArea = useRef();
     const [chart, setChart] = useState(null);
 
@@ -64,11 +64,11 @@ const BarChartWrapper = () => {
 
     useEffect(() => {
         if (!chart) {
-            setChart(new D3BarChart(chartArea.current))
+            setChart(new D3BarChart(chartArea.current, props.width, props.height))
         } else {
             chart.update(data)
         }
-    }, [chart, data])
+    }, [chart, data, props.height, props.width])
     return (
         <div ref={chartArea}>
             {/* temporary button */}
