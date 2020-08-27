@@ -5,6 +5,7 @@ complaints-long wait-negative,30
 complaints-not knowledgable-negative,25
 complaints-excessive fees-negative,18
 complaints-poor service-negative,35
+
 compliments-friendly staff-positive,55
 compliments-friendly staff-negative,1
 compliments-reliable-positive,13
@@ -12,6 +13,7 @@ compliments-reliable-negative,1
 compliments-fast service-positive,24
 compliments-good rates-positive,11
 compliments-knowledgable-positive,16
+
 suggestions-hire staff-positive,5
 suggestions-hire staff-negative,20
 suggestions-longer hours-positive,3
@@ -20,6 +22,7 @@ suggestions-lower fees-positive,14
 suggestions-lower fees-negative,14
 suggestions-more branches-positive,14
 suggestions-more branches-negative,4
+
 topics-atm-fee-positive,5
 topics-atm-fee-negative,15
 topics-atm-broken-negative,3
@@ -39,3 +42,4 @@ topics-questions-positive,15
 topics-questions-negative,15
 topics-financial advice-positive,34
 topics-financial advice-negative,10
+

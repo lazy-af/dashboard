@@ -9,16 +9,12 @@
 }
 
 #sequence {
-  width: 600px;
+  width: 700px;
   height: 70px;
 }
 
-#legend {
-  padding: 10px 0 0 3px;
-}
-
-#sequence text,
-#legend text {
+#sequence text {
+  font-size: 8px;
   font-weight: 600;
   fill: #fff;
 }

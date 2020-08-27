@@ -1,96 +1,74 @@
-import React, { useRef, useState, useEffect } from 'react'
-import D3PieChart from './D3PieChart';
-import './PieChartWrapper.css';
-
-const data1 = [
-    {
-        label: "Lorem ipsum",
-        value: 1
-    },
-    {
-        label: "dolor sit",
-        value: 1
-    },
-    {
-        label: "amet",
-        value: 1
-    },
-    {
-        label: "consectetur",
-        value: 1
-    },
-    {
-        label: "adipisicing",
-        value: 1
-    },
-    {
-        label: "elit",
-        value: 1
-    },
-    {
-        label: "eiusmod",
-        value: 1
-    }
-];
-
-const data2 = [
-    {
-        label: "Lorem ipsum",
-        value: 3
-    },
-    {
-        label: "dolor sit",
-        value: 4
-    },
-    {
-        label: "amet",
-        value: 1
-    },
-    {
-        label: "consectetur",
-        value: 7
-    },
-    {
-        label: "adipisicing",
-        value:4
-    },
-    {
-        label: "elit",
-        value: 6
-    },
-    {
-        label: "eiusmod",
-        value: 1
-    }
-];
+import React, { useRef, useState, useEffect } from "react";
+import D3PieChart from "./D3PieChart";
+import "./PieChartWrapper.css";
+import Axios from "axios";
 
 const PieChartWrapper = (props) => {
-    const chartArea = useRef(null);
-    const [chart, setChart] = useState(null);
+  const chartArea = useRef(null);
+  const [chart, setChart] = useState(null);
+  const [data, setData] = useState([]);
+  let url = "https://dashboard-8836f.firebaseio.com/data.json";
 
-    // temporary function
-    const [data, setData] = useState(data1);
-    const clickHandler = () => {
-        if (data === data1) {
-            setData(data2)
-        } else {
-            setData(data1)
-        }
+  useEffect(() => {
+    Axios.get(url)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .then((data) => {
+        let development = 0;
+        let ideation = 0;
+        let production = 0;
+        let retired = 0;
+        data.map((d) => {
+          if (d.phase === "Development") {
+            development++;
+          } else if (d.phase === "Ideation") {
+            ideation++;
+          } else if (d.phase === "Production") {
+            production++;
+          } else if (d.phase === "Retired") {
+            retired++;
+          } else {
+            return null;
+          }
+        });
+        return [
+          { label: "Development", value: development },
+          { label: "Ideation", value: ideation },
+          { label: "Production", value: production },
+          { label: "Retired", value: retired },
+        ];
+      })
+      .then((finalData) => setData(finalData));
+  }, [url]);
+
+  useEffect(() => {
+    if (!chart) {
+      setChart(
+        new D3PieChart(
+          chartArea.current,
+          props.width,
+          props.height,
+          props.colorScheme,
+          props.legend,
+          props.legendLength
+        )
+      );
+    } else {
+      chart.update(data);
     }
+  }, [
+    chart,
+    data,
+    props.colorScheme,
+    props.height,
+    props.legend,
+    props.legendLength,
+    props.width,
+  ]);
 
-    useEffect(() => {
-        if (!chart) {
-            setChart(new D3PieChart(chartArea.current, props.width, props.height, props.colorScheme, props.legend, props.legendLength))
-        } else {
-            chart.update(data)
-        }
-    }, [chart, data, props.colorScheme, props.height, props.legend, props.legendLength, props.width]);
-
-    return (
-        <div ref={chartArea}>
-            <button onClick={clickHandler}>click</button>
-        </div>
-    )
-}
+  return <div ref={chartArea}></div>;
+};
 
 export default PieChartWrapper;
