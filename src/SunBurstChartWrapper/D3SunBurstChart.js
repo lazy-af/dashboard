@@ -39,13 +39,13 @@ export default class D3SunBurstChart {
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
         vis.partition = d3.partition()
-            .size([2 * Math.PI, vis.radius * vis.radius]);
+            .size([2 * Math.PI, vis.radius * vis.radius])
 
         vis.arc = d3.arc()
-            .startAngle(function(d) { return d.x0; })
-            .endAngle(function(d) { return d.x1; })
-            .innerRadius(function(d) { return Math.sqrt(d.y0); })
-            .outerRadius(function(d) { return Math.sqrt(d.y1); });
+            .startAngle(d => d.x0)
+            .endAngle(d => d.x1)
+            .innerRadius(d => Math.sqrt(d.y0))
+            .outerRadius(d => Math.sqrt(d.y1));
    
     }
 
@@ -71,7 +71,7 @@ export default class D3SunBurstChart {
           
           // For efficiency, filter nodes to keep only those large enough to see.
           var nodes = vis.partition(root).descendants()
-              .filter(function(d) {
+              .filter(d => {
                   return (d.x1 - d.x0 > 0.005); // 0.005 radians = 0.29 degrees
               });
         
@@ -90,23 +90,14 @@ export default class D3SunBurstChart {
         
           // Get total size of the tree = value of root node from partition.
           vis.totalSize = path.datum().value;
+          console.log(vis.totalSize);
          };
 
-        //  initial breadcrum function
-         const initializeBreadcrumbTrail = () => {
-          // Add the svg area.
-          var trail = d3.select("#sequence").append("svg")
-              .attr("width", vis.width)
-              .attr("height", 50)
-              .attr("id", "trail");
-          // Add the label at the end, for the percentage.
-          trail.append("text")
-            .attr("id", "endlabel")
-            .style("fill", "#000");
-        }
-
-        // mouse over function
+         // mouse over function
         const mouseover = (d) => {
+
+          console.log(d.value);
+          // console.log(vis.totalSize);
 
           var percentage = (100 * d.value / vis.totalSize).toPrecision(3);
           var percentageString = percentage + "%";
@@ -136,6 +127,7 @@ export default class D3SunBurstChart {
               .style("opacity", 1);
         }
 
+
         //  mouse leave function
         const mouseleave = (d) => {
 
@@ -160,6 +152,36 @@ export default class D3SunBurstChart {
         }
 
 
+        //  initial breadcrum function
+         const initializeBreadcrumbTrail = () => {
+          // Add the svg area.
+          var trail = d3.select("#sequence").append("svg")
+              .attr("width", vis.width)
+              .attr("height", 50)
+              .attr("id", "trail");
+          // Add the label at the end, for the percentage.
+          trail.append("text")
+            .attr("id", "endlabel")
+            .style("fill", "#000");
+        }
+
+
+        // breadcrumb points function
+
+        const breadcrumbPoints = (d, i) => {
+          var points = [];
+          points.push("0,0");
+          points.push(vis.b.w + ",0");
+          points.push(vis.b.w + vis.b.t + "," + (vis.b.h / 2));
+          points.push(vis.b.w + "," + vis.b.h);
+          points.push("0," + vis.b.h);
+          if (i > 0) { // Leftmost breadcrumb; don't include 6th vertex.
+            points.push(vis.b.t + "," + (vis.b.h / 2));
+          }
+          return points.join(" ");
+        }
+
+        
         // update breadcrumb function
         const updateBreadcrumbs = (nodeArray, percentageString) => {
 
@@ -205,20 +227,7 @@ export default class D3SunBurstChart {
         }
 
 
-        // breadcrumb points function
-
-        const breadcrumbPoints = (d, i) => {
-          var points = [];
-          points.push("0,0");
-          points.push(vis.b.w + ",0");
-          points.push(vis.b.w + vis.b.t + "," + (vis.b.h / 2));
-          points.push(vis.b.w + "," + vis.b.h);
-          points.push("0," + vis.b.h);
-          if (i > 0) { // Leftmost breadcrumb; don't include 6th vertex.
-            points.push(vis.b.t + "," + (vis.b.h / 2));
-          }
-          return points.join(" ");
-        }
+        
 
         createVisualization(json);
 

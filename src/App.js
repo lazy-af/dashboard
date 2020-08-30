@@ -5,6 +5,7 @@ import PieChartWrapper from "./PieChartWrapper/PieChartWrapper";
 import LineChartWrapper from "./LineChartWraper/LineChartWrapper";
 import StackBarChartWrapper from "./StackBarChartWrapper/StackBarChartWrapper";
 import SunBurstChartWrapper from "./SunBurstChartWrapper/SunBurstChartWrapper";
+import HStackBarChartWrapper from "./HStackBarChartWrapper/HStackBarChartWrapper";
 
 const pieChartColorScheme = ["lightgreen", "lightblue", "pink", "orange"];
 
@@ -32,6 +33,7 @@ function App() {
       {/* <LineChartWrapper width={500} height={300} /> */}
       {/* <StackBarChartWrapper width={500} height={300} colorScheme={stackChartColorScheme} legend legendLength={100}/> */}
       <SunBurstChartWrapper width={500} height={500} />
+      {/* <HStackBarChartWrapper /> */}
     </div>
   );
 }

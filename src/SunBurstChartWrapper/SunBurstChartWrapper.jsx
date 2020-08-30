@@ -1,14 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import D3SunBurstChart from "./D3SunBurstChart";
-import * as d3 from "d3";
-import ObjectsToCsv from "objects-to-csv";
 import Axios from "axios";
-
-const dta = [
-  { code: "CA", name: "California" },
-  { code: "TX", name: "Texas" },
-  { code: "NY", name: "New York" },
-];
 
 // Function that takes csv data as an input an convert it into a json data
 const buildHierarchy = (csv) => {
@@ -30,7 +22,7 @@ const buildHierarchy = (csv) => {
         // Not yet at the end of the sequence; move down the tree.
         var foundChild = false;
         for (var k = 0; k < children.length; k++) {
-          if (children[k]["name"] == nodeName) {
+          if (children[k]["name"] === nodeName) {
             childNode = children[k];
             foundChild = true;
             break;
@@ -56,35 +48,32 @@ const SunBurstChartWrapper = (props) => {
   const chartArea = useRef(null);
   const [chart, setChart] = useState(null);
   let url = "https://dashboard-8836f.firebaseio.com/data.json";
+  
   const [data, setData] = useState([]);
 
   useEffect(() => {
     Axios.get(url)
       .then((data) => {
-        console.log(data.data);
+        // console.log(data.data);
 
         return data.data.map((d) => {
           return {
             path: `${d.lineOfBusiness}-${d.phase}-${d.solutionTechnologiesUsed}-${d.capabilities}`,
-            ratio: Math.floor(Math.random() * 9 + 1),
+            ratio: 1,
           };
         });
       })
       .then((finalData) => {
-        (async () => {
-          const csv = new ObjectsToCsv(finalData);
+        console.log(finalData);
+        return finalData.map((d) => {
+          return [d.path, d.ratio];
+        });
+      })
+      .then((data) => {
+        var json = buildHierarchy(data);
 
-          // Return the CSV file as string:
-          console.log(await csv.toString());
-        })();
+        setData(json);
       });
-
-    d3.text("sunactualdata.csv").then((text) => {
-      var csv = d3.csvParseRows(text);
-      var json = buildHierarchy(csv);
-      console.log(json);
-      setData(json);
-    });
   }, [url]);
 
   useEffect(() => {
