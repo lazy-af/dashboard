@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import D3SunBurstChart from "./D3SunBurstChart";
 import Axios from "axios";
 
+
 // Function that takes csv data as an input an convert it into a json data
 const buildHierarchy = (csv) => {
   var root = { name: "root", children: [] };
