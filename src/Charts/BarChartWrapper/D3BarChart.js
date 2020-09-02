@@ -50,6 +50,8 @@ import { scaleLinear, scaleBand, axisBottom, axisLeft } from 'd3';
         const rects = vis.svg.selectAll('rect')
             .data(data)
 
+        console.log("rects", rects);
+
         // exit
         rects.exit().transition().duration(1000)
             .attr('height', 0)

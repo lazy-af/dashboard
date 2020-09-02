@@ -4,7 +4,7 @@ import PieChart from "./Charts/PieChartWrapper/index";
 import LineChartWrapper from "./Charts/LineChartWraper/LineChartWrapper";
 import StackBarChartWrapper from "./Charts/StackBarChartWrapper/StackBarChartWrapper";
 import SunBurstChartWrapper from "./Charts/SunBurstChartWrapper/SunBurstChartWrapper";
-import HStackBarChartWrapper from "./Charts/HStackBarChartWrapper/HStackBarChartWrapper";
+import StackBarChart from "./Charts/HStackBarChartWrapper";
 
 const stackChartColorScheme = [
   "#98abc5",
@@ -19,12 +19,13 @@ const stackChartColorScheme = [
 function AppExtra() {
   return (
     <div className="chart-container">
-      <PieChart />
+      {/* <PieChart /> */}
       {/* <BarChartWrapper width={500} height={300} /> */}
       {/* <LineChartWrapper width={500} height={300} /> */}
       {/* <StackBarChartWrapper width={500} height={300} colorScheme={stackChartColorScheme} legend legendLength={100}/> */}
       {/* <SunBurstChartWrapper width={500} height={500} /> */}
-      {/* <HStackBarChartWrapper /> */}
+      <StackBarChart />
+      
     </div>
   );
 }

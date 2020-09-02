@@ -72,7 +72,7 @@ export default class D3StackBarChart {
 
     update = (data) => {
         const vis = this;
-        // console.log(data);
+        console.log("data received", data);
         vis.keys = data.columns.slice(1);
         console.log(vis.keys);
 
@@ -115,7 +115,6 @@ export default class D3StackBarChart {
             // .attr("x", d => vis.x(d.data.State))
             // .attr("width", vis.x.bandwidth())
             // .attr("height", d => (vis.y(d[0]) - vis.y(d[1])))
-
 
             // rect enter
             const enterBars = rects.enter().append("rect")
