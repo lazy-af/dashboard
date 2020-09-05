@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import D3SunBurstChart from "./D3SunBurstChart";
 import Axios from "axios";
+import { json } from 'd3';
+import { SunBurstUtility } from "../../Utility/Utility";
 
 
 // Function that takes csv data as an input an convert it into a json data
@@ -48,7 +50,7 @@ const buildHierarchy = (csv) => {
 const SunBurstChartWrapper = (props) => {
   const chartArea = useRef(null);
   const [chart, setChart] = useState(null);
-  let url = "https://dashboard-8836f.firebaseio.com/data.json";
+  let url = "https://dashboard-8836f.firebaseio.com/data.jsonmnmnm";
   
   const [data, setData] = useState([]);
 
@@ -57,12 +59,7 @@ const SunBurstChartWrapper = (props) => {
       .then((data) => {
         // console.log(data.data);
 
-        return data.data.map((d) => {
-          return {
-            path: `${d.lineOfBusiness}-${d.phase}-${d.solutionTechnologiesUsed}-${d.capabilities}`,
-            ratio: 1,
-          };
-        });
+        return SunBurstUtility(data.data);
       })
       .then((finalData) => {
         console.log(finalData);
@@ -72,8 +69,23 @@ const SunBurstChartWrapper = (props) => {
       })
       .then((data) => {
         var json = buildHierarchy(data);
-
         setData(json);
+      }).catch(err => {
+        console.log("error found:", err);
+        json("dummydata.json").then((data) => {
+          return SunBurstUtility(data);
+        })
+        .then((finalData) => {
+          console.log(finalData);
+          return finalData.map((d) => {
+            return [d.path, d.ratio];
+          });
+        })
+        .then((data) => {
+          var json = buildHierarchy(data);
+  
+          setData(json);
+        })
       });
   }, [url]);
 
@@ -86,6 +98,8 @@ const SunBurstChartWrapper = (props) => {
       chart.update(data);
     }
   }, [chart, data, props.height, props.width]);
+
+
   return (
     <div id="main">
       <div id="sequence"></div>

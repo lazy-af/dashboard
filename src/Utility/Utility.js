@@ -356,3 +356,68 @@ export const stackBarUtility2 = data => {
     })
 }
 
+
+export const KPIUtility = (data, phase) => {
+    let development = 0;
+            let ideation = 0;
+            let production = 0;
+            let retired = 0;
+            data.map((d) => {
+                if (d.phase === "Development") {
+                    development++;
+                } else if (d.phase === "Ideation") {
+                    ideation++;
+                } else if (d.phase === "Production") {
+                    production++;
+                } else if (d.phase === "Retired") {
+                    retired++;
+                } else {
+                    return null;
+                }
+            });
+            if (phase === 'development') {
+                return {phase: "Development", count: development}
+            } else if (phase === 'ideation') {
+                return {phase: "Ideation", count: ideation}
+            } else if (phase === 'production') {
+                return {phase: "Production", count: production}
+            } else if (phase === "retired") {
+                return {phase: "Retired", count: retired}
+            } else {
+                return null;
+            }
+}
+
+
+export const SunBurstUtility = data => {
+
+    const pathArray = [];
+    const pathReturn = [];
+    data.map(d => {
+        pathArray.push(`${d.lineOfBusiness}-${d.phase}-${d.solutionTechnologiesUsed}-${d.capabilities}`);
+    })
+
+    pathArray.sort();
+        let current = null;
+        let cnt = 0;
+
+        for (var i = 0; i < pathArray.length; i++) {
+            if (pathArray[i] != current) {
+                if (cnt > 0) {
+                    pathReturn.push({path: current, ratio: cnt})
+                }
+                current = pathArray[i];
+                cnt = 1;
+            } else {
+                cnt++;
+            }
+        }
+        if (cnt > 0) {
+            pathReturn.push({path: current, ratio: cnt})
+        }
+        return pathReturn;
+
+    
+
+
+}

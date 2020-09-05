@@ -25,11 +25,8 @@ export default class D3SunBurstChart {
         vis.radius = Math.min(width, height) / 2;
         // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
         vis.b = {
-          w: 88, h: 30, s: 3, t: 10
+          w: 68, h: 30, s: 3, t: 10
         };
-
-        // Total size of all segments; we set this later, after loading the data.
-        vis.totalSize = 0;
 
         vis.svg = d3.select(element).append("svg")
         .attr("width", width)
@@ -51,6 +48,9 @@ export default class D3SunBurstChart {
 
     update = (json) => {
       const vis = this;
+
+      // Total size of all segments; we set this later, after loading the data.
+      let totalSize = 0;
       
       // Creating the visualisation for sunburst chart.
         const createVisualization = (json) => {
@@ -89,17 +89,17 @@ export default class D3SunBurstChart {
           d3.select("#container").on("mouseleave", mouseleave);
         
           // Get total size of the tree = value of root node from partition.
-          vis.totalSize = path.datum().value;
-          console.log(vis.totalSize);
+          totalSize = path.datum().value; //error should be equal to 40 but somehow is equal to 13
+          // console.log("total size", totalSize);
          };
 
          // mouse over function
         const mouseover = (d) => {
 
-          console.log(d.value);
+          // console.log("d.value", d.value);
           // console.log(vis.totalSize);
 
-          var percentage = (100 * d.value / vis.totalSize).toPrecision(3);
+          var percentage = (100 * d.value / totalSize).toPrecision(3);
           var percentageString = percentage + "%";
           if (percentage < 0.1) {
             percentageString = "< 0.1%";
@@ -160,9 +160,9 @@ export default class D3SunBurstChart {
               .attr("height", 50)
               .attr("id", "trail");
           // Add the label at the end, for the percentage.
-          trail.append("text")
-            .attr("id", "endlabel")
-            .style("fill", "#000");
+          // trail.append("text")
+          //   .attr("id", "endlabel")
+          //   .style("fill", "#000");
         }
 
 

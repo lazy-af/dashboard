@@ -11,7 +11,7 @@ const HStackBarChartWrapper = (props) => {
     const [chart, setChart] = useState(null);
     // const [dataChnage, setdataChnage] = useState(true);
     const [data, setData] = useState([]);
-    let url = 'https://dashboard-8836f.firebaseio.com/data.jsonnm';
+    let url = 'https://dashboard-8836f.firebaseio.com/data.json';
 
 
     useEffect(() => {
