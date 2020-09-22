@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
-import D3LineChart from "./D3LineChart";
-import "./LineChartWrapper.css";
+import D3MultiLineChart from "./D3MultiLineChart";
+import "./MultiLineChart.css";
 import * as d3 from "d3";
 
-const LineChartWrapper = (props) => {
+const MultiLineChart = (props) => {
   const chartArea = useRef(null);
   const [chart, setChart] = useState(null);
+
   const [dataswitch, setDataswitch] = useState(true);
 
   // temporary function
@@ -15,7 +16,9 @@ const LineChartWrapper = (props) => {
 
   useEffect(() => {
     if (!chart) {
-      setChart(new D3LineChart(chartArea.current, props.width, props.height));
+      setChart(
+        new D3MultiLineChart(chartArea.current, props.width, props.height)
+      );
     } else {
       if (dataswitch) {
         d3.json("dataLine1.json").then((response) => chart.update(response));
@@ -23,8 +26,11 @@ const LineChartWrapper = (props) => {
         d3.json("dataLine2.json").then((response) => chart.update(response));
       }
     }
+    return () => {
+      document.querySelectorAll(".line1").forEach((e) => e.remove());
+      document.querySelectorAll(".line2").forEach((e) => e.remove());
+    };
   }, [chart, dataswitch, props.height, props.width]);
-
   return (
     <div ref={chartArea}>
       <button onClick={dataChangeHandler}>click</button>
@@ -32,4 +38,4 @@ const LineChartWrapper = (props) => {
   );
 };
 
-export default LineChartWrapper;
+export default MultiLineChart;

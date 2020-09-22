@@ -5,7 +5,7 @@ const stackBarChartColorScheme = ["lightgreen", "lightblue", "pink", "orange"];
 const StackBarChart = () => {
     return <HStackBarChartWrapper  
     width={400} 
-    height={200} 
+    height={300} //200 for nawaz dashboard
     xAxisLabel="X-Axis Label -->"
     legend 
     legendWidth={100}

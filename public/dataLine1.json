@@ -1,78 +1,97 @@
 [
   {
     "date": "27-Apr-12",
-    "close": 67
+    "close": 67,
+    "open": 34.12
   },
   {
     "date": "26-Apr-12",
-    "close": 89.7
+    "close": 89.7,
+    "open": 67.89
   },
   {
     "date": "25-Apr-12",
-    "close": 99
+    "close": 99,
+    "open": 78.54
   },
   {
     "date": "24-Apr-12",
-    "close": 130.28
+    "close": 130.28,
+    "open": 89.23
   },
   {
     "date": "23-Apr-12",
-    "close": 166.7
+    "close": 166.7,
+    "open": 99.23
   },
   {
     "date": "20-Apr-12",
-    "close": 234.98
+    "close": 234.98,
+    "open": 101.34
   },
   {
     "date": "19-Apr-12",
-    "close": 345.44
+    "close": 345.44,
+    "open": 122.34
   },
   {
     "date": "18-Apr-12",
-    "close": 443.34
+    "close": 443.34,
+    "open": 134.56
   },
   {
     "date": "17-Apr-12",
-    "close": 543.7
+    "close": 543.7,
+    "open": 160.45
   },
   {
     "date": "16-Apr-12",
-    "close": 580.13
+    "close": 580.13,
+    "open": 180.34
   },
   {
     "date": "13-Apr-12",
-    "close": 605.23
+    "close": 605.23,
+    "open": 210.45
   },
   {
     "date": "12-Apr-12",
-    "close": 622.77
+    "close": 622.77,
+    "open": 223.23
   },
   {
     "date": "11-Apr-12",
-    "close": 626.2
+    "close": 626.2,
+    "open": 201.56
   },
   {
     "date": "10-Apr-12",
-    "close": 628.44
+    "close": 628.44,
+    "open": 212.67
   },
   {
     "date": "9-Apr-12",
-    "close": 636.23
+    "close": 636.23,
+    "open": 310.45
   },
   {
     "date": "5-Apr-12",
-    "close": 633.68
+    "close": 633.68,
+    "open": 350.45
   },
   {
     "date": "4-Apr-12",
-    "close": 624.31
+    "close": 624.31,
+    "open": 410.23
   },
   {
     "date": "3-Apr-12",
-    "close": 629.32
+    "close": 629.32,
+    "open": 430.5
   },
   {
     "date": "2-Apr-12",
-    "close": 618.63
+    "close": 618.63,
+    "open": 460.34
   }
 ]

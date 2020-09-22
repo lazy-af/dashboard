@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-export default class D3LineChart {
+export default class D3MultiLineChart {
   constructor(element, width, height) {
     const vis = this;
     console.log(element);
@@ -30,6 +30,7 @@ export default class D3LineChart {
     data.forEach((d) => {
       d.date = parseTime(d.date);
       d.close = +d.close;
+      d.open = +d.open;
     });
     // console.log(data);
 
@@ -37,12 +38,22 @@ export default class D3LineChart {
     const x = d3
       .scaleTime()
       .range([0, vis.width])
-      .domain(d3.extent(data, (d) => d.date));
+      .domain(
+        d3.extent(data, (d) => {
+          console.log("ddte:", d.date.getDay());
+          return d.date;
+        })
+      );
 
     const y = d3
       .scaleLinear()
       .range([vis.height, 0])
-      .domain([0, d3.max(data, (d) => d.close)]);
+      .domain([
+        0,
+        d3.max(data, function (d) {
+          return Math.max(d.close, d.open);
+        }),
+      ]);
 
     // axis
     const yAxis = d3.axisLeft(y);
@@ -61,18 +72,18 @@ export default class D3LineChart {
       .x((d) => x(d.date))
       .y((d) => y(d.close));
 
-    // data join
-    const line = vis.svg.selectAll(".line").data([data]);
+    // define the 2nd line
+    var valueline2 = d3
+      .line()
+      .x((d) => x(d.date))
+      .y((d) => y(d.open));
 
-    line.exit().transition().duration(1000).remove();
-
-    // enter
-    line
-      .enter()
+    // Add the valueline path.
+    vis.svg
       .append("path")
-      .merge(line)
+      .data([data])
+      .attr("class", "line1")
       .attr("d", valueline)
-      .attr("class", "line")
       .attr("fill", "none")
       .attr("stroke-dasharray", function (d) {
         return this.getTotalLength();
@@ -81,13 +92,34 @@ export default class D3LineChart {
         return -this.getTotalLength();
       });
 
-    // update
     vis.svg
-      .selectAll(".line")
+      .selectAll(".line1")
       .transition()
       .duration(1000)
       .ease(d3.easeLinear)
       .attr("d", valueline)
+      .attr("stroke-dashoffset", 0);
+
+    // Add the valueline2 path.
+    vis.svg
+      .append("path")
+      .data([data])
+      .attr("class", "line2")
+      .attr("d", valueline2)
+      .attr("fill", "none")
+      .attr("stroke-dasharray", function (d) {
+        return this.getTotalLength();
+      })
+      .attr("stroke-dashoffset", function (d) {
+        return -this.getTotalLength();
+      });
+
+    vis.svg
+      .selectAll(".line2")
+      .transition()
+      .duration(1000)
+      .ease(d3.easeLinear)
+      .attr("d", valueline2)
       .attr("stroke-dashoffset", 0);
   };
 }

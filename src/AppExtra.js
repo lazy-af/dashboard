@@ -6,6 +6,9 @@ import StackBarChartWrapper from "./Charts/StackBarChartWrapper/StackBarChartWra
 import SunBurstChartWrapper from "./Charts/SunBurstChartWrapper/SunBurstChartWrapper";
 import StackBarChart from "./Charts/HStackBarChartWrapper";
 import KPITile from "./KPITile/KPITile";
+import FilterButton from "./Filters/FilterButton";
+import "./App.scss";
+import LineChart from "./Charts/MultiLineChart";
 
 const stackChartColorScheme = [
   "#98abc5",
@@ -20,17 +23,40 @@ const stackChartColorScheme = [
 function AppExtra() {
   return (
     <div className="chart-container">
-      {/* <PieChart /> */}
-      {/* <KPITile phase='development' img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png" /> */}
-      {/* <KPITile phase='ideation' img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png" /> */}
-      {/* <KPITile phase='production' img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png" /> */}
-      {/* <KPITile phase='retired' img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png" /> */}
+      {/* <FilterButton /> */}
+      {/* <div className="pie-position">
+        <PieChart />
+      </div> */}
+      {/* <div className="kpi-position">
+        <KPITile
+          phase="development"
+          img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png"
+        />
+        <KPITile
+          phase="ideation"
+          img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png"
+        />
+        <KPITile
+          phase="production"
+          img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png"
+        />
+        <KPITile
+          phase="retired"
+          img="https://images.vexels.com/media/users/3/129234/isolated/preview/73970c892d748c7507db8e10d71535b0-apple-logo-icon-by-vexels.png"
+        />
+      </div> */}
       {/* <BarChartWrapper width={500} height={300} /> */}
-      {/* <LineChartWrapper width={500} height={300} /> */}
+      {/* <div className="linechart-position"> */}
+      {/* <LineChartWrapper width={410} height={300} /> */}
+      <LineChart />
+      {/* </div> */}
       {/* <StackBarChartWrapper width={500} height={300} colorScheme={stackChartColorScheme} legend legendLength={100}/> */}
-      <SunBurstChartWrapper width={300} height={300} />
+      {/* <div className="sunburst-position">
+        <SunBurstChartWrapper width={300} height={300} />
+      </div> */}
+      {/* <div className="stackbar-position"> */}
       {/* <StackBarChart /> */}
-      
+      {/* </div> */}
     </div>
   );
 }

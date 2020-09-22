@@ -1,61 +1,50 @@
-.c-Dashboard {
-  margin-top: 2px;
-  height: 100%;
-  .row {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .c-TopRow {
-    height: 50%;
-    .c-TopCol-1 {
-      background: gainsboro;
-      border-color: white;
-      border-style: solid;
-      padding-left: 0;
-      padding-right: 0;
-      .c-Filters {
-        border-color: gainsboro;
-        border-bottom: white;
-        border-style: solid;
-        height: 10%;
-        padding-left: 15px;
-        padding-right: 0;
-      }
-      .c-Cards {
-        border-color: gainsboro;
-        border-bottom: white;
-        border-style: solid;
-        height: 25%;
-        padding-left: 15px;
-        padding-right: 0;
-      }
-      .c-Charts {
-        border-color: gainsboro;
-        border-style: solid;
-        height: 65%;
-        padding-left: 15px;
-        padding-right: 0;
-      }
-    }
+.kpi-position {
+  width: 70%;
+  position: absolute;
+  top: 10%;
+}
 
-    .c-TopCol-2 {
-      background: gainsboro;
-      border-color: white;
-      border-style: solid;
-    }
-  }
-  .c-ButtonRow {
-    height: 50%;
+.sunburst-position {
+  padding: 10px;
+  box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  right: 5%;
+  top: 10%;
+}
 
-    .c-BottomCol-1 {
-      background: h=gainsboro;
-      background-color: white;
-      border-style: solid;
-    }
-    .c-BottomCol-2 {
-      background: h=gainsboro;
-      background-color: white;
-      border-style: solid;
-    }
-  }
+.pie-position {
+  width: 410px;
+  box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  top: 30%;
+  left: 1.5%;
+}
+
+.stackbar-position {
+  width: 500px;
+  box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  top: 30%;
+  left: 33%;
+}
+
+.linechart-position {
+  width: 410px;
+  box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  top: 75%;
+  left: 1%;
+}
+
+.stackbar-2-position {
+  width: 500px;
+  box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: absolute;
+  top: 75%;
+  left: 33%;
 }

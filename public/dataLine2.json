@@ -1,78 +1,97 @@
 [
   {
     "date": "27-Apr-12",
-    "close": 80
+    "close": 80,
+    "open": 55
   },
   {
-    "date": "26-Apr-12",
-    "close": 47
+    "date": "26-May-12",
+    "close": 47,
+    "open": 85
   },
   {
-    "date": "25-Apr-12",
-    "close": 160
+    "date": "25-Jun-12",
+    "close": 160,
+    "open": 255
   },
   {
-    "date": "24-Apr-12",
-    "close": 139
+    "date": "24-Jul-12",
+    "close": 139,
+    "open": 342
   },
   {
-    "date": "23-Apr-12",
-    "close": 266
+    "date": "23-Aug-12",
+    "close": 266,
+    "open": 441
   },
   {
-    "date": "20-Apr-12",
-    "close": 134
+    "date": "20-Sep-12",
+    "close": 134,
+    "open": 189
   },
   {
-    "date": "19-Apr-12",
-    "close": 445
+    "date": "19-Oct-12",
+    "close": 445,
+    "open": 546
   },
   {
-    "date": "18-Apr-12",
-    "close": 243
+    "date": "18-Nov-12",
+    "close": 243,
+    "open": 599
   },
   {
-    "date": "17-Apr-12",
-    "close": 643
+    "date": "17-Dec-12",
+    "close": 643,
+    "open": 251
   },
   {
-    "date": "16-Apr-12",
-    "close": 480
+    "date": "16-Jan-13",
+    "close": 480,
+    "open": 467
   },
   {
-    "date": "13-Apr-12",
-    "close": 605.23
+    "date": "13-Feb-13",
+    "close": 605.23,
+    "open": 123
   },
   {
-    "date": "12-Apr-12",
-    "close": 722
+    "date": "12-Mar-13",
+    "close": 722,
+    "open": 345
   },
   {
-    "date": "11-Apr-12",
-    "close": 426
+    "date": "11-Apr-13",
+    "close": 426,
+    "open": 333
   },
   {
-    "date": "10-Apr-12",
-    "close": 528
+    "date": "10-May-13",
+    "close": 528,
+    "open": 278
   },
   {
-    "date": "9-Apr-12",
-    "close": 136
+    "date": "9-Jun-13",
+    "close": 136,
+    "open": 344
   },
   {
-    "date": "5-Apr-12",
-    "close": 33
+    "date": "5-Jul-13",
+    "close": 33,
+    "open": 114
   },
   {
-    "date": "4-Apr-12",
-    "close": 324
+    "date": "4-Aug-13",
+    "close": 324,
+    "open": 99
   },
   {
-    "date": "3-Apr-12",
-    "close": 629
+    "date": "3-Sep-13",
+    "close": 629,
+    "open": 487
   },
   {
-    "date": "2-Apr-12",
-    "close": 518
+    "date": "2-Oct-13",
+    "close": 518,
+    "open": 551
   }
 ]
